@@ -1,0 +1,38 @@
+{
+	"name": "nodebb-plugin-unresponsive",
+	"version": "0.1.0",
+	"nbbpm": {
+		"compatibility": "^1.0.0"
+	},
+	"description": "Override NodeBB Responsive Design",
+	"main": "",
+	"scripts": {
+	},
+	"repository": {
+		"type": "git"
+	},
+	"devDependencies": {
+	},
+	"keywords": [
+		"nodebb",
+		"plugin",
+		"css",
+		"media"
+	],
+	"author": {
+		"name": "boomzillawtf",
+		"email": "boomzillawtf@gmail.com"
+	},
+	"license": "???",
+	"_id": "nodebb-plugin-media-override@0.0.0",
+	"_npmUser": {
+		"name": "",
+		"email": ""
+	},
+	"maintainers": [
+		{
+			"name": "boomzillawtf",
+			"email": "boomzillawtwf@gmail.com"
+		}
+	]
+}
