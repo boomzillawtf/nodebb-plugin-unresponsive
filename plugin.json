@@ -6,6 +6,8 @@
 	"library": "",
 	"hooks":[
 	],
+	"languages": "languages",
+	"defaultLang": "en_US",
 	"templates": "",
 	"scripts": [
 		"static/unresponsive.js"
