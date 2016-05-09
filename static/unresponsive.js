@@ -26,7 +26,7 @@ require(['translator'], function(translator){
 			i.classList.add('fa-circle-o');
 		}
 		var span = document.createElement('span');
-		span.innerText = text;
+		$(span).text(text);
 		a.appendChild( span );
 		return li;
 	}
