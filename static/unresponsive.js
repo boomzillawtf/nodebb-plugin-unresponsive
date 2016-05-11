@@ -122,6 +122,13 @@ function init() {
 	if(!nodebbTranslator){
 		setTimeout( init, 10 );
 	}
+	var s = [].slice.call(document.styleSheets);
+	for(var ixs = 0; ixs < s.length; ixs++){
+		sheet = s[ixs];
+		if( sheet && sheet.href && sheet.href.indexOf('bootstrap') != -1){
+			return; // this doesn't work with skins due to cross origin issues
+		}
+	}
 	var responsive = window.localStorage['responsive'] != 'unresponsive';
 	if( !responsive ){
 		forceUnresponsiveStyle();
