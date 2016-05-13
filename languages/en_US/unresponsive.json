@@ -1,4 +1,16 @@
 {
 	"responsive": "Responsive mode",
-	"desktop": "Desktop mode"
+	"desktop": "Desktop mode",
+	"settings": "Unresponsive Settings",
+	"mode_header": "Responsive Browsing",
+	"mode_text": "Note that if you use a custom skin, these settings will have no effect and the site will be displayed in responsive mode.",
+	"other_settings": "Other Settings",
+	"other_text": "Style Tweaks",
+	"cancel": "Cancel",
+	"max_fluid_width": "Maximum width in desktop mode (including the unit):",
+	"max_content_width": "Maximum post width (including the unit):",
+	"max_notification_height": "Max height for notification dropdown (including the unit, default 250px):",
+	"settings_header": "Unreponsive Settings",
+	"settings_text": "These changes are stored in the browser's local storage, so they should persist across sessions and be configurable for each of your devices.",
+	"left_margin": "Left margin (including the unit):"
 }

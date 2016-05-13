@@ -3,7 +3,6 @@
 	"name": "Override NodeBB Responsive Design",
 	"description": "NodeBB plugin that allows users to override NodeBB's responsive design.",
 	"url": "",
-	"library": "",
 	"hooks":[
 	],
 	"languages": "languages",
@@ -13,8 +12,8 @@
 		"static/unresponsive.js"
 	],
 	"staticDirs": {
-		"static": "./static"
 	},
 	"less":[
+		"less/unresponsive.less"
 	]
 }
