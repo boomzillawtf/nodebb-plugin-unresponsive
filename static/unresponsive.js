@@ -249,7 +249,7 @@ function createMenu( menu, hasCustomStyle ){
 function addResponsiveMenu(){
 	var userControlList = $("#user-control-list");
 	var mobileMenu = $('[component="header/usercontrol"]');
-	var existingMenu = $("#media-override-responsive");
+	var existingMenu = $("#unresponsive-settings");
 	if( userControlList.length > 0 && !existingMenu.length){
 		createMenu( userControlList[0], hasCustomStyle );
 		createMenu( mobileMenu[0], hasCustomStyle );

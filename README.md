@@ -5,6 +5,9 @@ in the UI when using NodeBB. The user's preference is stored using the browser's
 the device being used to access NodeBB.
 
 ##Changes
+    0.3.1
+     - Detect that the menu was already created under custom themes.
+     - Fix settings popup z-index.
     0.3.0
      - Settings dialog.
      - Set max width and left margin when in desktop mode
