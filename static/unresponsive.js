@@ -261,24 +261,25 @@ function initInterface(){
 	settingsDiv = createSettingsDiv();
 }
 
-var maxWidth, minWidth, translate;
+var maxWidth, minWidth, translateMax, translateMin;
 
 maxWidth = /max-width:\s*(\d+px)/;
 minWidth = /min-width:\s*(\d+px)/;
-translate = {
+translateMax = {
 	// based on max-width
 	'767px': '0px',
 	'768px': '0px',
 	'979px': '0px',
 	'991px': '0px',
-	'992px': '0px',
-	
+	'992px': '0px'
+};
+translateMin = {	
 	// based on min-width:
 	'1000px': '1px',
-	'768px': '0px',
+	'768px': '1px',
 	'979px': '1px',
 	'992px': '1px'
-}
+};
 
 function styleTweaks(){
 	var s = [].slice.call(document.styleSheets);
@@ -318,12 +319,12 @@ function forceUnresponsiveStyle(){
 				if(rule != null && rule.media != null && rule.media && rule.media.length > 0){
 					var conditionText = rule.media.conditionText || rule.media.mediaText;
 					var maxMatches = conditionText.match( maxWidth );
-					if( maxMatches && translate[maxMatches[1]]){
-						conditionText = conditionText.replace( maxMatches[1], translate[maxMatches[1]] );
+					if( maxMatches && translateMax[maxMatches[1]]){
+						conditionText = conditionText.replace( maxMatches[1], translateMax[maxMatches[1]] );
 					}
 					var minMatches = conditionText.match( minWidth );
-					if( minMatches && translate[minMatches[1]] ){
-						conditionText = conditionText.replace( minMatches[1], translate[minMatches[1]] );
+					if( minMatches && translateMin[minMatches[1]] ){
+						conditionText = conditionText.replace( minMatches[1], translateMin[minMatches[1]] );
 					}
 					rule.media.mediaText = conditionText;
 				}
