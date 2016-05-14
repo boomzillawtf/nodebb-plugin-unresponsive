@@ -5,6 +5,8 @@ in the UI when using NodeBB. The user's preference is stored using the browser's
 the device being used to access NodeBB.
 
 ##Changes
+    0.3.2
+     - Fix duplicate property name error in some browsers.
     0.3.1
      - Detect that the menu was already created under custom themes.
      - Fix settings popup z-index.
