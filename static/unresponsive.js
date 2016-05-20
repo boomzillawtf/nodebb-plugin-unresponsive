@@ -157,7 +157,7 @@ function createSettingsDiv(){
 	element( otherWell, "br");
 	
 	label( otherWell, "max-notification-height", strings['max_notification_height']);
-	var maxContentWidth = input(otherWell, "max-notification-height", settings.maxNotificationHeight ? settings.maxNotificationHeight : '');
+	var maxNotificationHeight = input(otherWell, "max-notification-height", settings.maxNotificationHeight ? settings.maxNotificationHeight : '');
 	element( modeWell, "br");
 	
 	var actionsDiv = element(form, "div", "form-actions");
@@ -288,7 +288,7 @@ function styleTweaks(){
 	}
 	if( settings.maxNotificationHeight ){
 		s[0].insertRule(
-			"#menu .notification-list, .header .notification-list{max-height: " + settings.maxContentWidth + ";}",
+			"#menu .notification-list, .header .notification-list{max-height: " + settings.maxNotificationHeight + ";}",
 			s[0].cssRules.length);
 	}
 	
