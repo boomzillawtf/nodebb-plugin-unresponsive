@@ -16,6 +16,7 @@ var nodebbTranslator,
 		['unresponsive','max_fluid_width'],
 		['unresponsive','max_content_width'],
 		['unresponsive','max_notification_height'],
+		['unresponsive','notification_width'],
 		['unresponsive','left_margin'],
 		['global','save_changes']
 	],
@@ -160,6 +161,10 @@ function createSettingsDiv(){
 	var maxNotificationHeight = input(otherWell, "max-notification-height", settings.maxNotificationHeight ? settings.maxNotificationHeight : '');
 	element( modeWell, "br");
 	
+	label( otherWell, "notification-width", strings['notification_width']);
+	var notificationWidth = input(otherWell, "notification-width", settings.notificationWidth ? settings.notificationWidth : '');
+	element( modeWell, "br");
+	
 	var actionsDiv = element(form, "div", "form-actions");
 	var submit = element( actionsDiv, "a", ["btn","btn-primary"], strings["save_changes"] );
 	var cancel = element( actionsDiv, "a", "btn", strings["cancel"] );
@@ -183,8 +188,11 @@ function onSaveSettings( div ){
 	var originalMaxContent = settings.maxContentWidth;
 	settings.maxContentWidth = $("#max-content-width")[0].value;
 	
-	var originalMaxNotification = settings.maxNotificationHeight;
+	var originalMaxNotificationHeight = settings.maxNotificationHeight;
 	settings.maxNotificationHeight = $("#max-notification-height")[0].value;
+	
+	var originalMaxNotificationWidth = settings.notificationWidth;
+	settings.notificationWidth = $("#notification-width")[0].value;
 	
 	var originalLeftMargin = settings.leftMargin;
 	settings.leftMargin = $("#left-margin")[0].value;
@@ -192,7 +200,9 @@ function onSaveSettings( div ){
 	$(div).hide();
 	saveSettings();
 	var needsRefresh = false;
-	if( originalMaxContent != settings.maxContentWidth || originalMaxNotification != settings.maxNotificationHeight){
+	if( originalMaxContent != settings.maxContentWidth || originalMaxNotificationHeight != settings.maxNotificationHeight
+		|| originalMaxNotificationWidth != settings.notificationWidth ){
+		
 		needsRefresh = true;
 	}
 	if( originalResponsive != settings.responsive ||
@@ -217,6 +227,8 @@ function onShowSettings(){
 	$("input[value=responsive]").prop("checked", settings.responsive );
 	$("input[value=unresponsive]").prop("checked", !settings.responsive );
 	$("#max-fluid-width")[0].value = settings.maxFluidWidth ? settings.maxFluidWidth : '';
+	$("#max-notification-height")[0].value = settings.maxNotificationHeight ? settings.maxNotificationHeight : '';
+	$("#notification-width")[0].value = settings.notificationWidth ? settings.notificationWidth : '';
 	$(modalDiv).show();
 	$(settingsDiv).show();
 	
@@ -289,6 +301,11 @@ function styleTweaks(){
 	if( settings.maxNotificationHeight ){
 		s[0].insertRule(
 			"#menu .notification-list, .header .notification-list{max-height: " + settings.maxNotificationHeight + ";}",
+			s[0].cssRules.length);
+	}
+	if( settings.notificationWidth ){
+		s[0].insertRule(
+			".notification-list li, .header .notification-list li {width: " + settings.notificationWidth+ ";}",
 			s[0].cssRules.length);
 	}
 	
