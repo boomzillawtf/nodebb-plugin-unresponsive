@@ -283,14 +283,19 @@ translateMax = {
 	'768px': '0px',
 	'979px': '0px',
 	'991px': '0px',
-	'992px': '0px'
+	'992px': '0px',
+	'1199px': '0px'
 };
-translateMin = {	
+translateMin = {
 	// based on min-width:
 	'1000px': '1px',
+	'767px': '1px',
 	'768px': '1px',
 	'979px': '1px',
-	'992px': '1px'
+	'991px': '1px',
+	'992px': '1px',
+	'1200px': '1px',
+	'1199px': '1px'
 };
 
 function styleTweaks(){
@@ -311,9 +316,15 @@ function styleTweaks(){
 	
 }
 
+function resizeHeader(){
+	var height = $('#header-menu').height();
+	$('body').css('padding-top', (height + 20) + 'px');
+}
+
 function forceUnresponsiveStyle(){
 	$('.container').addClass('container-fluid');
 	$('.container').removeClass('container');
+	$(window).resize( resizeHeader );
 	// Get all stylesheets for ths docuemnt
 	var s = [].slice.call(document.styleSheets);
 	if( settings.maxFluidWidth ){
