@@ -116,7 +116,7 @@ function createSettingsDiv(){
 	}
 	
 	mainDiv = element($('body')[0], "div", ["account","unresponsive-dialog"]);
-	mainDiv.id = '#unresponsive-setting-dialog';
+	mainDiv.id = 'unresponsive-setting-dialog';
 	modalDiv = element($('body')[0], "div", "unresponsive-modal");
 	modalDiv.addEventListener("click", function(){$(modalDiv).hide(); $(settingsDiv).hide();});
 	
