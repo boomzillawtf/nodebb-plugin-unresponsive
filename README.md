@@ -5,6 +5,8 @@ in the UI when using NodeBB. The user's preference is stored using the browser's
 the device being used to access NodeBB.
 
 ##Changes
+    0.4.2
+     - Don't recreate settings dialog on every navigation.
     0.4.1
      - Fix nav menu overlap
     0.4.0
