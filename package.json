@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-unresponsive",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "nbbpm": {
     "compatibility": "^1.0.0"
   },
