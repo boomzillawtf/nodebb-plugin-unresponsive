@@ -5,6 +5,9 @@ in the UI when using NodeBB. The user's preference is stored using the browser's
 the device being used to access NodeBB.
 
 ##Changes
+    0.5.0
+     - Added confirmation dialog when switching to desktop mode, to prevent mobile
+       users from accidentally switching to desktop mode.
     0.4.2
      - Don't recreate settings dialog on every navigation.
     0.4.1

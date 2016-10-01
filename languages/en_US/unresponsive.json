@@ -13,5 +13,8 @@
 	"notification_width": "Width for notification dropdown (including the unit, default 310px):",
 	"settings_header": "Unreponsive Settings",
 	"settings_text": "These changes are stored in the browser's local storage, so they should persist across sessions and be configurable for each of your devices.",
-	"left_margin": "Left margin (including the unit):"
+	"left_margin": "Left margin (including the unit):",
+	"confirm_desktop": "View Site in Desktop Mode",
+	"confirm_desktop_header": "Confirm Desktop Mode",
+	"confirm_desktop_text": "Desktop mode may not be appropriate for smaller screens (e.g., phones). It may be difficult to use certain site features."
 }

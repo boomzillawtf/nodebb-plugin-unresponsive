@@ -18,13 +18,18 @@ var nodebbTranslator,
 		['unresponsive','max_notification_height'],
 		['unresponsive','notification_width'],
 		['unresponsive','left_margin'],
+		['unresponsive','confirm_desktop'],
+		['unresponsive','confirm_desktop_header'],
+		['unresponsive','confirm_desktop_text'],
 		['global','save_changes']
 	],
 	strings = { translated: 0 },
 	settings,
 	hasCustomStyle,
 	settingsDiv,
-	modalDiv;
+	settingsModalDiv,
+	desktopDiv,
+	desktopModalDiv;
 
 var unresponsive = function(translator){
 	rawStrings.map( function( raw, ix ){
@@ -109,6 +114,29 @@ function label(parent, forElement, value ){
 	return l;
 }
 
+function createDesktopDiv(){
+	var mainDiv = $("#turn-on-desktop-dialog");
+	if( mainDiv.length > 0 ){
+		return mainDiv[0];
+	}
+	mainDiv = element($('body')[0], "div", ["account","unresponsive-dialog"]);
+	mainDiv.id = 'turn-on-desktop-dialog';
+	desktopModalDiv = element($('body')[0], "div", "unresponsive-modal");
+	desktopModalDiv.addEventListener("click", function(){$(desktopModalDiv).hide(); $(desktopDiv).hide();} );
+	
+	element( mainDiv, "h2", [], strings["confirm_desktop_header"]);
+	element( mainDiv, "p", [], strings["confirm_desktop_text"]);
+	var form = element(mainDiv, "form");
+	var actionsDiv = element(form, "div", "form-actions");
+	var submit = element( actionsDiv, "a", ["btn","btn-primary"], strings["confirm_desktop"] );
+	var cancel = element( actionsDiv, "a", "btn", strings["cancel"] );
+	
+	submit.addEventListener('click', function(event){ beUnresponsive(); });
+	cancel.addEventListener('click', function(event){ onCancelSettings([mainDiv,desktopModalDiv]);});
+	
+	return mainDiv;
+}
+
 function createSettingsDiv(){
 	var mainDiv = $("#unresponsive-setting-dialog");
 	if( mainDiv.length > 0 ){
@@ -117,8 +145,8 @@ function createSettingsDiv(){
 	
 	mainDiv = element($('body')[0], "div", ["account","unresponsive-dialog"]);
 	mainDiv.id = 'unresponsive-setting-dialog';
-	modalDiv = element($('body')[0], "div", "unresponsive-modal");
-	modalDiv.addEventListener("click", function(){$(modalDiv).hide(); $(settingsDiv).hide();});
+	settingsModalDiv = element($('body')[0], "div", "unresponsive-modal");
+	settingsModalDiv.addEventListener("click", function(){$(settingsModalDiv).hide(); $(settingsDiv).hide();});
 	
 	element(mainDiv, "h2", [], strings["settings_header"]);
 	element(mainDiv, "span", [], strings["settings_text"]);
@@ -168,8 +196,8 @@ function createSettingsDiv(){
 	var actionsDiv = element(form, "div", "form-actions");
 	var submit = element( actionsDiv, "a", ["btn","btn-primary"], strings["save_changes"] );
 	var cancel = element( actionsDiv, "a", "btn", strings["cancel"] );
-	submit.addEventListener('click', function(event){ onSaveSettings([mainDiv,modalDiv]);});
-	cancel.addEventListener('click', function(event){ onCancelSettings([mainDiv,modalDiv]);});
+	submit.addEventListener('click', function(event){ onSaveSettings([mainDiv,settingsModalDiv]);});
+	cancel.addEventListener('click', function(event){ onCancelSettings([mainDiv,settingsModalDiv]);});
 	
 	return mainDiv;
 }
@@ -229,9 +257,14 @@ function onShowSettings(){
 	$("#max-fluid-width")[0].value = settings.maxFluidWidth ? settings.maxFluidWidth : '';
 	$("#max-notification-height")[0].value = settings.maxNotificationHeight ? settings.maxNotificationHeight : '';
 	$("#notification-width")[0].value = settings.notificationWidth ? settings.notificationWidth : '';
-	$(modalDiv).show();
+	$(settingsModalDiv).show();
 	$(settingsDiv).show();
 	
+}
+
+function confirmDesktop(){
+	$(desktopModalDiv).show();
+	$(desktopDiv).show();
 }
 
 function createMenu( menu, hasCustomStyle ){
@@ -243,7 +276,7 @@ function createMenu( menu, hasCustomStyle ){
 	responsiveMenu.addEventListener('click', beResponsive);
 	
 	var unresponsiveMenu = createMenuItem( strings.desktop, !settings.responsive);
-	unresponsiveMenu.addEventListener('click', beUnresponsive);
+	unresponsiveMenu.addEventListener('click', confirmDesktop );
 	unresponsiveMenu.id = 'media-override-unresponsive';
 	
 	menu.appendChild( divider, responsiveMenu );
@@ -271,6 +304,7 @@ function addResponsiveMenu(){
 function initInterface(){
 	addResponsiveMenu();
 	settingsDiv = createSettingsDiv();
+	desktopDiv = createDesktopDiv();
 }
 
 var maxWidth, minWidth, translateMax, translateMin;
