@@ -369,7 +369,12 @@ function forceUnresponsiveStyle(){
 	}
 	// Iterate through each one
 	for(var ixs = 0; ixs < s.length; ixs++){
-		var sheet = s[ixs];
+		var sheet;
+		try {
+			sheet = s[ixs];
+		} catch (e) {
+			sheet = null;
+		}
 		if(sheet!=null && sheet.cssRules != null && sheet.cssRules.length > 0){
 			// Get all cssRules for this stylesheet
 			var r = [].slice.call(sheet.cssRules);
