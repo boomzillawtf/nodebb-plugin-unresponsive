@@ -372,30 +372,30 @@ function forceUnresponsiveStyle(){
 		var sheet;
 		try {
 			sheet = s[ixs];
-		} catch (e) {
-			sheet = null;
-		}
-		if(sheet!=null && sheet.cssRules != null && sheet.cssRules.length > 0){
-			// Get all cssRules for this stylesheet
-			var r = [].slice.call(sheet.cssRules);
-			// iterate through each rule
-			for (var ixr = 0; ixr < r.length; ixr++){
-				var rule = r[ixr];
-				
-				// If this rule has a Media query, we're interested in it
-				if(rule != null && rule.media != null && rule.media && rule.media.length > 0){
-					var conditionText = rule.media.conditionText || rule.media.mediaText;
-					var maxMatches = conditionText.match( maxWidth );
-					if( maxMatches && translateMax[maxMatches[1]]){
-						conditionText = conditionText.replace( maxMatches[1], translateMax[maxMatches[1]] );
+			if(sheet!=null && sheet.cssRules != null && sheet.cssRules.length > 0){
+				// Get all cssRules for this stylesheet
+				var r = [].slice.call(sheet.cssRules);
+				// iterate through each rule
+				for (var ixr = 0; ixr < r.length; ixr++){
+					var rule = r[ixr];
+					
+					// If this rule has a Media query, we're interested in it
+					if(rule != null && rule.media != null && rule.media && rule.media.length > 0){
+						var conditionText = rule.media.conditionText || rule.media.mediaText;
+						var maxMatches = conditionText.match( maxWidth );
+						if( maxMatches && translateMax[maxMatches[1]]){
+							conditionText = conditionText.replace( maxMatches[1], translateMax[maxMatches[1]] );
+						}
+						var minMatches = conditionText.match( minWidth );
+						if( minMatches && translateMin[minMatches[1]] ){
+							conditionText = conditionText.replace( minMatches[1], translateMin[minMatches[1]] );
+						}
+						rule.media.mediaText = conditionText;
 					}
-					var minMatches = conditionText.match( minWidth );
-					if( minMatches && translateMin[minMatches[1]] ){
-						conditionText = conditionText.replace( minMatches[1], translateMin[minMatches[1]] );
-					}
-					rule.media.mediaText = conditionText;
 				}
 			}
+		} catch (e) {
+			sheet = null;
 		}
 	}
 }

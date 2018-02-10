@@ -5,6 +5,8 @@ in the UI when using NodeBB. The user's preference is stored using the browser's
 the device being used to access NodeBB.
 
 ##Changes
+    0.5.1
+     - Exception handling for changing browser behavior when accessing CSS sheets.
     0.5.0
      - Added confirmation dialog when switching to desktop mode, to prevent mobile
        users from accidentally switching to desktop mode.
